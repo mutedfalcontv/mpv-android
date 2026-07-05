@@ -29,7 +29,7 @@ internal class MPVView(context: Context, attrs: AttributeSet) : BaseMPVView(cont
             "gpu")
 
         // hwdec
-        val hwdec = if (sharedPreferences.getBoolean("hardware_decoding", false))
+        val hwdec = if (sharedPreferences.getBoolean("hardware_decoding", true))
             HWDECS
         else
             "no"

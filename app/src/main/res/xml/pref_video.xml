@@ -43,6 +43,13 @@
     <SwitchPreferenceCompat
         android:defaultValue="true"
         app:iconSpaceReserved="false"
+        android:key="hardware_decoding"
+        android:summary="@string/pref_hardware_decoding_summary"
+        android:title="@string/pref_hardware_decoding_title" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        app:iconSpaceReserved="false"
         android:key="anime4k_shaders"
         android:summary="@string/pref_anime4k_shaders_summary"
         android:title="@string/pref_anime4k_shaders_title" />
