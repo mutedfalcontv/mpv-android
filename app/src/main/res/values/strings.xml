@@ -179,6 +179,9 @@
     <string name="pref_video_fastdecode_title">Low-quality video decoding</string>
     <string name="pref_video_fastdecode_summary">Trades quality for performance and thus fluent playback.\n<b>REDUCES QUALITY A LOT</b></string>
 
+    <string name="pref_anime4k_shaders_title">Anime4K shaders</string>
+    <string name="pref_anime4k_shaders_summary">Apply Anime4K upscaling/restoration shaders. Requires software decoding.</string>
+
     <string name="pref_ignore_audio_focus_title">Ignore audio focus</string>
     <string name="pref_ignore_audio_focus_summary">Do not pause playback or reduce volume when other applications play audio at the same time.</string>
 

@@ -41,6 +41,13 @@
         app:entries="@array/temporal_scaler_list" />
 
     <SwitchPreferenceCompat
+        android:defaultValue="true"
+        app:iconSpaceReserved="false"
+        android:key="anime4k_shaders"
+        android:summary="@string/pref_anime4k_shaders_summary"
+        android:title="@string/pref_anime4k_shaders_title" />
+
+    <SwitchPreferenceCompat
         android:defaultValue="false"
         app:iconSpaceReserved="false"
         android:key="video_fastdecode"

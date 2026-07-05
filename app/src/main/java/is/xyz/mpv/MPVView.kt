@@ -99,30 +99,32 @@ internal class MPVView(context: Context, attrs: AttributeSet) : BaseMPVView(cont
         MPVLib.setOptionString("hwdec", hwdec)
 
         // glsl shaders for Anime4K upscaling
-        val shaderNames = listOf(
-            "Anime4K_Clamp_Highlights.glsl",
-            "Anime4K_Upscale_Denoise_CNN_x2_VL.glsl",
-            "Anime4K_AutoDownscalePre_x2.glsl",
-            "Anime4K_AutoDownscalePre_x4.glsl",
-            "Anime4K_Restore_CNN_VL.glsl",
-            "Anime4K_Upscale_CNN_x2_M.glsl"
-        )
-        val shadersDir = java.io.File(context.filesDir, "shaders")
-        shadersDir.mkdirs()
-        for (name in shaderNames) {
-            val f = java.io.File(shadersDir, name)
-            if (!f.exists()) {
-                try {
-                    context.assets.open("shaders/$name").use { input ->
-                        f.outputStream().use { output ->
-                            input.copyTo(output)
+        if (sharedPreferences.getBoolean("anime4k_shaders", true)) {
+            val shaderNames = listOf(
+                "Anime4K_Clamp_Highlights.glsl",
+                "Anime4K_Upscale_Denoise_CNN_x2_VL.glsl",
+                "Anime4K_AutoDownscalePre_x2.glsl",
+                "Anime4K_AutoDownscalePre_x4.glsl",
+                "Anime4K_Restore_CNN_VL.glsl",
+                "Anime4K_Upscale_CNN_x2_M.glsl"
+            )
+            val shadersDir = java.io.File(context.filesDir, "shaders")
+            shadersDir.mkdirs()
+            for (name in shaderNames) {
+                val f = java.io.File(shadersDir, name)
+                if (!f.exists()) {
+                    try {
+                        context.assets.open("shaders/$name").use { input ->
+                            f.outputStream().use { output ->
+                                input.copyTo(output)
+                            }
                         }
-                    }
-                } catch (_: Exception) {}
+                    } catch (_: Exception) {}
+                }
             }
+            val shaders = shaderNames.map { "${shadersDir}/$it" }.joinToString(":")
+            MPVLib.setOptionString("glsl-shaders", shaders)
         }
-        val shaders = shaderNames.map { "${shadersDir}/$it" }.joinToString(":")
-        MPVLib.setOptionString("glsl-shaders", shaders)
         MPVLib.setOptionString("hwdec-codecs", "h264,hevc,mpeg4,mpeg2video,vp8,vp9,av1")
         MPVLib.setOptionString("ao", "audiotrack,opensles")
         MPVLib.setOptionString("audio-set-media-role", "yes")
