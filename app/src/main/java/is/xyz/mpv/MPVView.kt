@@ -99,7 +99,7 @@ internal class MPVView(context: Context, attrs: AttributeSet) : BaseMPVView(cont
         MPVLib.setOptionString("hwdec", hwdec)
 
         // glsl shaders for Anime4K upscaling
-        if (sharedPreferences.getBoolean("anime4k_shaders", true)) {
+        if (sharedPreferences.getBoolean("anime4k_shaders", false)) {
             val shaderNames = listOf(
                 "Anime4K_Clamp_Highlights.glsl",
                 "Anime4K_Upscale_Denoise_CNN_x2_VL.glsl",
