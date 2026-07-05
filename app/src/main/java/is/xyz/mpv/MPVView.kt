@@ -125,6 +125,11 @@ internal class MPVView(context: Context, attrs: AttributeSet) : BaseMPVView(cont
             val shaders = shaderNames.map { "${shadersDir}/$it" }.joinToString(":")
             MPVLib.setOptionString("glsl-shaders", shaders)
         }
+
+        // performance tuning for low-end HW
+        MPVLib.setOptionString("vd-lavc-fast", "yes")
+        MPVLib.setOptionString("vd-lavc-skiploopfilter", "nonkey")
+        MPVLib.setOptionString("vd-lavc-threads", "2")
         MPVLib.setOptionString("hwdec-codecs", "h264,hevc,mpeg4,mpeg2video,vp8,vp9,av1")
         MPVLib.setOptionString("ao", "audiotrack,opensles")
         MPVLib.setOptionString("audio-set-media-role", "yes")
